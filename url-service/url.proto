@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package url;
 
-option go_package = "url-service/proto";
+option go_package = "./url-service";
 
 service URLService {
   rpc ShortenURL(ShortenRequest) returns (ShortenResponse);

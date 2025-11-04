@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package storage;
 
-option go_package = "url-service/proto";
+option go_package = "./storage-service";
 
 service StorageService {
   rpc SaveURL(SaveURLRequest) returns (SaveURLResponse);
