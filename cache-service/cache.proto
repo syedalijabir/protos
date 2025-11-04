@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package cache;
+
+option go_package = "url-service/proto";
+
+service CacheService {
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc Set(SetRequest) returns (SetResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+message GetRequest {
+  string key = 1;
+}
+
+message GetResponse {
+  string value = 1;
+  bool found = 2;
+  string error = 3;
+}
+
+message SetRequest {
+  string key = 1;
+  string value = 2;
+  int32 ttl_seconds = 3; // Time to live in seconds
+}
+
+message SetResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message DeleteRequest {
+  string key = 1;
+}
+
+message DeleteResponse {
+  bool success = 1;
+  string error = 2;
+}

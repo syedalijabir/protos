@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package storage;
+
+option go_package = "url-service/proto";
+
+service StorageService {
+  rpc SaveURL(SaveURLRequest) returns (SaveURLResponse);
+  rpc GetURL(GetURLRequest) returns (GetURLResponse);
+  rpc IncrementClick(IncrementClickRequest) returns (IncrementClickResponse);
+  rpc GetStats(GetStatsRequest) returns (GetStatsResponse);
+}
+
+message SaveURLRequest {
+  string short_code = 1;
+  string original_url = 2;
+}
+
+message SaveURLResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message GetURLRequest {
+  string short_code = 1;
+}
+
+message GetURLResponse {
+  string original_url = 1;
+  bool found = 2;
+  string error = 3;
+}
+
+message IncrementClickRequest {
+  string short_code = 1;
+}
+
+message IncrementClickResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message GetStatsRequest {
+  string short_code = 1;
+}
+
+message GetStatsResponse {
+  string short_code = 1;
+  int64 click_count = 2;
+  string created_at = 3;
+  string error = 4;
+}
